@@ -1,7 +1,8 @@
-from django.contrib import admin
 from django.urls import path, include
+from django.contrib import admin
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('oppp.urls')),  # Ensure the app name matches exactly
+    path('', include('oppp.urls')),
+    path('api/', include(('api.urls', 'api'), namespace='api')),  # Corrected namespace syntax
 ]

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-ibyf@-@rpe1@)%i)0*r_pwq%%sapal&0*g6ru81t=z((vdej&k
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['AIRZ', 'localhost']
+ALLOWED_HOSTS = ['AIRZ', 'localhost','127.0.0.1']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'oppp',
+    'api',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -75,8 +77,12 @@ WSGI_APPLICATION = 'website.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'my_django_db',
+        'USER': 'new_user',
+        'PASSWORD': 'Forget@06?',
+        'HOST': 'localhost',  # Or your remote host
+        'PORT': '8000',       # Default MySQL port
     }
 }
 

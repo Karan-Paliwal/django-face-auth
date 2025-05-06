@@ -1,16 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(to right, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 80%;
+            max-width: 800px;
+            animation: fadeIn 0.6s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .item-list {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .item {
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        .auth-links a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #ff758c;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease-in-out;
+        }
+        .auth-links a:hover {
+            background-color: #ff7eb3;
+        }
+    </style>
 </head>
 <body>
-    <h2>Welcome to Home Page</h2>
-    {% if user.is_authenticated %}
-        <p>Hello, {{ user.username }}!</p>
-        <a href="{% url 'logout' %}">Logout</a>
-    {% else %}
-        <p>You are not logged in.</p>
-        <a href="{% url 'login' %}">Login</a>
-    {% endif %}
+
+    <div class="container">
+        <h2>Welcome to the Home Page</h2>
+        
+        {% if user.is_authenticated %}
+            <p>Hello, <strong>{{ user.username }}</strong>! Glad to have you here.</p>
+            <div class="auth-links">
+                <a href="{% url 'logout' %}">Logout</a>
+                <a href="{% url 'api:blogpost-view-create' %}">Go to Blogposts</a>
+            </div>
+            
+            <h3>Available Items:</h3>
+            <div class="item-list">
+                {% for item in items %}
+                    <div class="item">
+                        <strong>{{ item.name }}</strong> - {{ item.description }} - ${{ item.price }}
+                    </div>
+                {% empty %}
+                    <p>No items available.</p>
+                {% endfor %}
+            </div>
+
+        {% else %}
+            <p>You are not logged in.</p>
+            <div class="auth-links">
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        {% endif %}
+    </div>
+
 </body>
 </html>
