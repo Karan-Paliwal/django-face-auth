@@ -75,17 +75,18 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'my_django_db',
-        'USER': 'new_user',
-        'PASSWORD': 'Forget@06?',
-        'HOST': 'localhost',  # Or your remote host
-        'PORT': '8000',       # Default MySQL port
+        'NAME': os.getenv('DATABASE_NAME', 'my_django_db'),
+        'USER': os.getenv('DATABASE_USER', 'new_user'),
+        'PASSWORD': os.getenv('DATABASE_PASSWORD', 'Forget@06?'),
+        'HOST': os.getenv('DATABASE_HOST', 'your-mysql-host.onrender.com'),  # Replace with Render-hosted MySQL URL
+        'PORT': os.getenv('DATABASE_PORT', '3306'),  # Default MySQL port
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
