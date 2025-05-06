@@ -3,7 +3,7 @@ click==8.1.8
 colorama==0.4.6
 Django==5.2
 djangorestframework==3.16.0
-dlib --no-cache-dir
+dlib==19.22.1  # Precompiled version to avoid build failures
 environ==1.0
 face-recognition==1.3.0
 face-recognition-models==0.3.0
@@ -14,3 +14,11 @@ opencv-python==4.11.0.86
 pillow==11.2.1
 sqlparse==0.5.3
 tzdata==2025.2
+python-dotenv==1.0.1  # For handling environment variables
+cmake==3.27.6  # Needed for dlib compilation
+libopenblas-dev  # Optimized linear algebra package
+liblapack-dev  # Needed for matrix operations
+libx11-dev  # Required for certain GUI-based operations
+gunicorn==22.0.0  # Production-grade Django web server
+whitenoise==6.5.0  # Serves static files in production
+requests==2.31.0  # For making API calls if needed
